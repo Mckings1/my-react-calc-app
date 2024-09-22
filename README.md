@@ -1,1 +1,3 @@
-# my-react-calc-app
+# React App Calculator
+
+## This simple calulator is built by react.

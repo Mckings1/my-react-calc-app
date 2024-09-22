@@ -8,8 +8,8 @@ button {
   border-radius: 5px;
 }
 input {
-  /* display: block; */
-  margin: auto;
+  display: block;
+  /* margin: auto; */
   margin-bottom: 20px;
 }
 button {

@@ -12,6 +12,7 @@ input {
   /* margin: auto; */
   margin-bottom: 20px;
 }
+
 button {
   border: 1px solid gray;
   background: whitesmoke;
@@ -19,22 +20,74 @@ button {
 }
 button:nth-last-child(2),
 button:nth-last-child(1) {
-  background: tomato;
+  background: red;
   color: white;
 }
+body {
+  background-color: rgb(165, 165, 165);
+}
+.App.light {
+  background-color: white;
+  color: black;
+}
+
+.App.dark {
+  background-color: black;
+  color: white;
+}
+.calc {
+  margin-left: 7em;
+}
+.display {
+  border: 1px solid #ccc;
+  padding: 20px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push content to the bottom */
+  align-items: flex-end; /* Align content to the right */
+  /* background-color: #f9f9f9; */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.display p {
+  font-size: 24px;
+  margin: 0;
+}
+input {
+  width: 100%;
+  padding: 5px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.currentInput {
+  font-size: 18px;
+  color: gray;
+}
+
+.result {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 .App {
   margin: auto;
+  margin-top: 20px;
   /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* Full viewport height */
-  width: 80vh;
-  text-align: center; /* Center text */
+  height: 60vh; /* Full viewport height */
+  width: 40vh;
+  /* text-align: left; Center text */
   border: 2px solid #ccc; /* Border color */
   border-radius: 20px; /* Rounded corners */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
-  background-color: #f8f1e7; /* Light background color for the calculator */
+  background-color: #eaa648; /* Light background color for the calculator */
   padding: 30px;
 }
 
@@ -45,25 +98,6 @@ button:nth-last-child(1) {
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.display {
-  margin-bottom: 10px;
-}
-
-.display p {
-  font-size: 24px;
-  margin: 0;
-}
-
-input {
-  width: 100%;
-  padding: 5px;
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: right;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
 .buttons {
@@ -78,41 +112,10 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #54595e;
   color: white;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #9a9595;
 }
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

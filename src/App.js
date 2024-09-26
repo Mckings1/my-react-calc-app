@@ -1,38 +1,50 @@
-import { useState, useRef } from "react";
 import "./App.css";
+import { useState, useRef } from "react";
+import Switch from "./switch";
+import { ThemeProvider, useTheme } from "./ThemeContext";
 
 function App() {
+  const { theme } = useTheme();
   const inputRef = useRef(null);
   const [result, setResult] = useState(0);
   const [currentInput, setCurrentInput] = useState("");
 
+  // Handle input for buttons
   const handleInput = (value) => {
     setCurrentInput((prev) => prev + value);
   };
 
+  // Calculate the result based on the input expression
+  const calculate = () => {
+    try {
+      // Evaluate the input expression (e.g., "2+3*4")
+      // eslint-disable-next-line
+      const calcResult = eval(currentInput); // Evaluates the input as JS expression
+      setResult(calcResult);
+      setCurrentInput(""); // Reset input after calculation
+    } catch (error) {
+      setResult("Error");
+    }
+  };
+
   const plus = (e) => {
     e.preventDefault();
-    setResult((prev) => prev + Number(currentInput));
-    resetInput();
+    setCurrentInput((prev) => prev + "+");
   };
 
   const minus = (e) => {
     e.preventDefault();
-    setResult((prev) => prev - Number(currentInput));
-    resetInput();
+    setCurrentInput((prev) => prev + "-");
   };
 
   const times = (e) => {
     e.preventDefault();
-    setResult((prev) => prev * Number(currentInput));
-    resetInput();
+    setCurrentInput((prev) => prev + "*");
   };
 
   const divide = (e) => {
     e.preventDefault();
-    const value = Number(currentInput);
-    setResult((prev) => (value !== 0 ? prev / value : "Error: Div by 0"));
-    resetInput();
+    setCurrentInput((prev) => prev + "/");
   };
 
   const resetInput = () => {
@@ -46,20 +58,19 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <div>
-        <h1>Simplest Working Calculator</h1>
+        <Switch />
+        <h2 className="calc">Calculator</h2>
       </div>
       <form>
         <div className="display">
-          <p>{result}</p>
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Type a number"
-            value={currentInput}
-            readOnly
-          />
+          <p className="currentInput" ref={inputRef}>
+            {currentInput}
+          </p>
+
+          {/* Result below*/}
+          <p className="result">{result}</p>
         </div>
         <div className="buttons">
           <button type="button" onClick={() => handleInput("9")}>
@@ -114,77 +125,21 @@ function App() {
           <button type="button" onClick={resetResult}>
             AC
           </button>
-          {/* <button type="button" onClick={calculate}>
+          <button type="button" onClick={calculate}>
             =
-          </button> */}
+          </button>
         </div>
       </form>
     </div>
   );
 }
 
-export default App;
+function Root() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
 
-//   const handleInput = (value) => {
-//     setCurrentInput((prev) => prev + value);
-//   };
-
-//   function plus(e) {
-//     e.preventDefault();
-//     setResult((result) => result + Number(inputRef.current.value));
-//   }
-
-//   function minus(e) {
-//     // Add the code for the minus function
-//     e.preventDefault();
-//     setResult((result) => result - Number(inputRef.current.value));
-//   }
-
-//   function times(e) {
-//     // Add the code for the plus function
-//     e.preventDefault();
-//     setResult((result) => result * Number(inputRef.current.value));
-//   }
-
-//   function divide(e) {
-//     // Add the code for the divide function
-//     e.preventDefault();
-//     setResult((result) => result / Number(inputRef.current.value));
-//   }
-
-//   function resetInput(e) {
-//     // Add the code for the resetInput function
-//     e.preventDefault();
-//     inputRef.current.value = 0;
-//   }
-
-//   function resetResult(e) {
-//     // Add the code for the resetResult function
-//     e.preventDefault();
-//     setResult((prevVal) => prevVal * 0);
-//   }
-
-//   return (
-//     <div className="App">
-//       <div>
-//         <h1>Simplest Working Calculator</h1>
-//       </div>
-//       <form>
-//         <div className="display">
-//           <p ref={resultRef}>{result}</p>
-//           <input
-//             pattern="[0-9]"
-//             ref={inputRef}
-//             type="text"
-//             placeholder="Type a number"
-//
-//           />
-//         </div>
-//      All numbers were fixed
-
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default App;
+export default Root;
